@@ -46,6 +46,12 @@ class WheelPicker extends React.Component<Props, State> {
         }
     }
 
+    static getDerivedStateFromProps(props: Props) {
+        return {
+            selectedItemPosition: props.selectedItemPosition
+        }
+    }
+
     onItemSelected = ( event: any ) => {
         if ( this.props.onItemSelected ) {
             this.props.onItemSelected( event.nativeEvent )
@@ -54,10 +60,6 @@ class WheelPicker extends React.Component<Props, State> {
 
     componentDidMount() {
         this.setState( { selectedItemPosition: this.props.selectedItemPosition } )
-    }
-
-    componentWillReceiveProps( nextProps: Props ) {
-        this.setState( { selectedItemPosition: nextProps.selectedItemPosition } )
     }
 
     getItemTextSize = ()=>{
