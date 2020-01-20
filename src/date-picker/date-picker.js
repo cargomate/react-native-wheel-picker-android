@@ -99,9 +99,7 @@ export default class DatePicker extends PureComponent {
     const { minimumDate, maximumDate } = this.state;
     let date = this.state.date;
 
-    if (change.year && change.month && change.date) {
-      date.setFullYear(change.year, change.month, change.date);
-    }
+    date.setFullYear(change.year, change.month, change.date);
 
     if (change.hours && change.minutes) {
       date.setHours(change.hours);
