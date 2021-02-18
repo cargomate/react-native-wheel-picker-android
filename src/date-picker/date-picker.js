@@ -10,15 +10,16 @@ import { normalizeDate, normalizeMinMaxDates } from "./utils";
 
 export default class DatePicker extends PureComponent {
   static propTypes = {
-    mode: PropTypes.oneOf(["date", "time", "datetime"]).isRequired,
-    date: PropTypes.instanceOf(Date),
     // TODO: initialDate
-    onDateChange: PropTypes.func.isRequired,
-    minimumDate: PropTypes.instanceOf(Date),
-    maximumDate: PropTypes.instanceOf(Date),
-    minuteInterval: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30]),
-    styles: PropTypes.object,
+    date: PropTypes.instanceOf(Date),
     locale: PropTypes.string,
+    maximumDate: PropTypes.instanceOf(Date),
+    minimumDate: PropTypes.instanceOf(Date),
+    minuteInterval: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30]),
+    mode: PropTypes.oneOf(["date", "time", "datetime"]).isRequired,
+    onDateChange: PropTypes.func.isRequired,
+    styles: PropTypes.object,
+    todayDate: PropTypes.instanceOf( Date ).isRequired,
     todayTitle: PropTypes.string
   };
 
@@ -44,7 +45,7 @@ export default class DatePicker extends PureComponent {
       minimumDate,
       maximumDate,
       timeOnly: props.mode === "time",
-      dateOnly: props.mode === "date"
+      dateOnly: props.mode === "date",
     };
 
     this.styles = styles(props.styles);
@@ -63,16 +64,17 @@ export default class DatePicker extends PureComponent {
     const { date, minimumDate, maximumDate, dateOnly, timeOnly } = this.state;
     if (timeOnly) return null;
 
-    const { locale, todayTitle } = this.props;
+    const { locale, todayDate, todayTitle } = this.props;
     return (
       <DateColumns
-        dateOnly={dateOnly}
         date={date}
-        minimumDate={minimumDate}
+        dateOnly={dateOnly}
+        locale={locale}
         maximumDate={maximumDate}
+        minimumDate={minimumDate}
         onChange={this.onChange}
         styles={this.styles}
-        locale={locale}
+        todayDate={todayDate}
         todayTitle={todayTitle}
       />
     );
