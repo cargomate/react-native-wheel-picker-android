@@ -7,22 +7,23 @@ import PropTypes from "prop-types";
 export default class DateColumns extends PureComponent {
 
     static propTypes = {
-        dateOnly: PropTypes.bool.isRequired,
         date: PropTypes.instanceOf( Date ).isRequired,
-        minimumDate: PropTypes.instanceOf( Date ).isRequired,
+        dateOnly: PropTypes.bool.isRequired,
+        locale: PropTypes.string,
         maximumDate: PropTypes.instanceOf( Date ).isRequired,
+        minimumDate: PropTypes.instanceOf( Date ).isRequired,
         onChange: PropTypes.func.isRequired,
         styles: PropTypes.object.isRequired,
-        locale: PropTypes.string
+        todayDate: PropTypes.instanceOf( Date ).isRequired,
     };
 
     static getDerivedStateFromProps( props, state ) {
-        const { date, minimumDate, maximumDate, locale, todayTitle } = props;
+        const { date, minimumDate, maximumDate, locale, todayDate, todayTitle } = props;
 
         if ( state.date && state.date.valueOf() === date.valueOf() )
             return null;
 
-        const list = makeDateList( { minimumDate, maximumDate, locale, todayTitle } );
+        const list = makeDateList( { minimumDate, maximumDate, locale, todayDate, todayTitle } );
 
         const index = dateToIndex( date, list );
         return { date, index, list };
