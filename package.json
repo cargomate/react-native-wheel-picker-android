@@ -54,5 +54,6 @@
     },
     "jest": {
         "preset": "react-native"
-    }
+    },
+    "typings": "./index.d.ts"
 }
