@@ -51,6 +51,8 @@ export interface IPropsDatePicker extends DatePickerIOSProps {
 	hideMinutes?: boolean;
 	hideAM?: boolean;
 	onDateSelected?: (res: Date) => void;
+	styles?: Record<string, StyleProp<ViewStyle>>;
+  	todayDate?: Date;
 }
 
 export class DatePicker extends React.Component<IPropsDatePicker> {
