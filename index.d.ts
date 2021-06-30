@@ -4,10 +4,10 @@ import { DatePickerIOSProps, StyleProp, ViewStyle } from 'react-native';
 interface IStyle {
 	selectedItemTextColor?: string;
 	selectedItemTextSize?: number;
-	selectedItemTextFontFamily: string;
+	selectedItemTextFontFamily?: string;
 	itemTextColor?: string;
 	itemTextSize?: number;
-	itemTextFontFamily: string;
+	itemTextFontFamily?: string;
 	indicatorColor?: string;
 	hideIndicator?: boolean;
 	indicatorWidth?: number;
@@ -17,10 +17,17 @@ interface IStyle {
 
 export interface IPropsWheelPicker extends IStyle {
 	data: string[];
-	isCyclic?: boolean;
 	initPosition?: number;
+	isAtmospheric?: boolean;
+	isCurved?: boolean;
+	isCyclic?: boolean;
+	onItemSelected?: (item: {
+		data: string
+		position: string
+	}) => void;
 	selectedItem?: number;
-	onItemSelected?: (res: number) => void;
+	selectedItemPosition?: number;
+    visibleItemCount?: number;
 }
 
 export class WheelPicker extends React.Component<IPropsWheelPicker> {
